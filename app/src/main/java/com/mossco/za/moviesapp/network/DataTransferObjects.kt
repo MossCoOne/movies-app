@@ -2,7 +2,7 @@ package com.mossco.za.moviesapp.network
 
 import com.squareup.moshi.Json
 
-data class NetworkMoviesResponse(@Json(name = "results") val movies: List<NetworkMovie>)
+data class NetworkMoviesResponse(@Json(name = "results") val movies: List<NetworkMovie>?=null)
 
 data class NetworkMovie(val popularity: Double? = null,
                         @Json(name = "vote_count") val voteCount: Int? = null,
