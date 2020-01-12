@@ -1,15 +1,10 @@
 package com.mossco.za.moviesapp.ui.home
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-
-import android.widget.TextView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.mossco.za.moviesapp.R
 import com.mossco.za.moviesapp.databinding.MovieItemLayoutBinding
 import com.mossco.za.moviesapp.network.NetworkMovie
 import com.mossco.za.moviesapp.ui.home.NowPlayingMoviesAdapter.NowPlayingMoviesViewHolder.Companion.from
@@ -43,13 +38,15 @@ class NowPlayingMoviesAdapter :
         holder.bindDataToView(currentMovie)
     }
 
-    class NowPlayingMoviesViewHolder private constructor(binding: MovieItemLayoutBinding) :
+    class NowPlayingMoviesViewHolder private constructor(private val binding: MovieItemLayoutBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        val movieIconImageView: ImageView = binding.movieIconImageView
-        val movieTitleTextView: TextView = binding.movieTitleTextView
 
         fun bindDataToView(currentMovie: NetworkMovie) {
-            movieTitleTextView.text = currentMovie.title
+           /**
+            * This is using Binding adapter to help us bind data to views.
+            * */
+            binding.nowPlayingMovie = currentMovie
+            binding.executePendingBindings()
         }
 
         /**
