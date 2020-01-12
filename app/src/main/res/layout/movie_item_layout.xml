@@ -4,23 +4,29 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="nowPlayingMovie"
             type="com.mossco.za.moviesapp.network.NetworkMovie" />
+
+        <variable
+            name="clickListener"
+            type="com.mossco.za.moviesapp.ui.home.NowPlayingMovieItemClickListener" />
 
     </data>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:onClick="@{() -> clickListener.onItemClicked(nowPlayingMovie)}"
         android:orientation="vertical">
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:elevation="8dp"
+            android:elevation="@dimen/dimen_small"
             android:foreground="?android:attr/selectableItemBackground"
-            app:cardCornerRadius="8dp">
+            app:cardCornerRadius="@dimen/dimen_small">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -39,7 +45,7 @@
 
                 <TextView
                     android:id="@+id/movieTitleTextView"
-                    android:layout_width="0dp"
+                    android:layout_width="@dimen/dimen_none"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:layout_margin="@dimen/activity_horizontal_margin"
