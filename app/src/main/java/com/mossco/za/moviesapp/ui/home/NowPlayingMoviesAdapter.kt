@@ -9,7 +9,7 @@ import com.mossco.za.moviesapp.databinding.MovieItemLayoutBinding
 import com.mossco.za.moviesapp.network.NetworkMovie
 import com.mossco.za.moviesapp.ui.home.NowPlayingMoviesAdapter.NowPlayingMoviesViewHolder.Companion.from
 
-class NowPlayingMoviesAdapter :
+class NowPlayingMoviesAdapter(val movieItemClickListener: NowPlayingMovieItemClickListener) :
     ListAdapter<NetworkMovie, NowPlayingMoviesAdapter.NowPlayingMoviesViewHolder>(
         NowPlayingMoviesDiffCallback()
     ) {
@@ -34,18 +34,21 @@ class NowPlayingMoviesAdapter :
 
 
     override fun onBindViewHolder(holder: NowPlayingMoviesViewHolder, position: Int) {
-        val currentMovie = getItem(position)
-        holder.bindDataToView(currentMovie)
+        holder.bindDataToView(getItem(position), movieItemClickListener)
     }
 
     class NowPlayingMoviesViewHolder private constructor(private val binding: MovieItemLayoutBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bindDataToView(currentMovie: NetworkMovie) {
-           /**
-            * This is using Binding adapter to help us bind data to views.
-            * */
+        fun bindDataToView(
+            currentMovie: NetworkMovie,
+            movieItemClickListener: NowPlayingMovieItemClickListener
+        ) {
+            /**
+             * This is using Binding adapter to help us bind data to views.
+             * */
             binding.nowPlayingMovie = currentMovie
+            binding.clickListener = movieItemClickListener
             binding.executePendingBindings()
         }
 
