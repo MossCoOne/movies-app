@@ -4,21 +4,30 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+
 import android.widget.TextView
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.mossco.za.moviesapp.R
+import com.mossco.za.moviesapp.databinding.MovieItemLayoutBinding
 import com.mossco.za.moviesapp.network.NetworkMovie
 import com.mossco.za.moviesapp.ui.home.NowPlayingMoviesAdapter.NowPlayingMoviesViewHolder.Companion.from
 
 class NowPlayingMoviesAdapter :
-    RecyclerView.Adapter<NowPlayingMoviesAdapter.NowPlayingMoviesViewHolder>() {
+    ListAdapter<NetworkMovie, NowPlayingMoviesAdapter.NowPlayingMoviesViewHolder>(
+        NowPlayingMoviesDiffCallback()
+    ) {
 
-
-    private var latestMoviesList = listOf<NetworkMovie>()
-        set(value) {
-            field = value
-            notifyDataSetChanged()
+    class NowPlayingMoviesDiffCallback : DiffUtil.ItemCallback<NetworkMovie>() {
+        override fun areItemsTheSame(oldItem: NetworkMovie, newItem: NetworkMovie): Boolean {
+            return oldItem.id == newItem.id
         }
+
+        override fun areContentsTheSame(oldItem: NetworkMovie, newItem: NetworkMovie): Boolean {
+            return oldItem == newItem
+        }
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NowPlayingMoviesViewHolder {
         /**
@@ -29,19 +38,15 @@ class NowPlayingMoviesAdapter :
     }
 
 
-    override fun getItemCount(): Int {
-        return latestMoviesList.size
-    }
-
     override fun onBindViewHolder(holder: NowPlayingMoviesViewHolder, position: Int) {
-        val currentMovie: NetworkMovie = latestMoviesList.get(index = position)
+        val currentMovie = getItem(position)
         holder.bindDataToView(currentMovie)
     }
 
-    class NowPlayingMoviesViewHolder private constructor(itemView: View) :
-        RecyclerView.ViewHolder(itemView) {
-        val movieIconImageView: ImageView = itemView.findViewById(R.id.movieIconImageView)
-        val movieTitleTextView: TextView = itemView.findViewById(R.id.movieTitleTextView)
+    class NowPlayingMoviesViewHolder private constructor(binding: MovieItemLayoutBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+        val movieIconImageView: ImageView = binding.movieIconImageView
+        val movieTitleTextView: TextView = binding.movieTitleTextView
 
         fun bindDataToView(currentMovie: NetworkMovie) {
             movieTitleTextView.text = currentMovie.title
@@ -53,10 +58,11 @@ class NowPlayingMoviesAdapter :
          * */
         companion object {
             fun from(parent: ViewGroup): NowPlayingMoviesViewHolder {
+
                 val layoutInflater = LayoutInflater.from(parent.context)
-                val view = layoutInflater
-                    .inflate(R.layout.movie_item_layout, parent, false)
-                return NowPlayingMoviesViewHolder(view)
+                val binding =
+                    MovieItemLayoutBinding.inflate(layoutInflater, parent, false)
+                return NowPlayingMoviesViewHolder(binding)
             }
         }
 
