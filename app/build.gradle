@@ -1,6 +1,5 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 
 android {
@@ -20,8 +19,8 @@ android {
         }
     }
 
-    dataBinding {
-        enabled = true
+    buildFeatures {
+        dataBinding = true
     }
 
     compileOptions {
@@ -32,7 +31,7 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation"org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation "org.jetbrains.kotlin:kotlin-reflect:$kotlin_version"
     implementation "androidx.appcompat:appcompat:$version_app_compat"
     implementation "androidx.core:core-ktx:$version_core"
