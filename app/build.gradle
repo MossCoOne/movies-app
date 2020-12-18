@@ -1,15 +1,14 @@
 apply plugin: 'com.android.application'
-
 apply plugin: 'kotlin-android'
-
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
 
 android {
-    compileSdkVersion 29
+    compileSdkVersion 30
     defaultConfig {
         applicationId "com.mossco.za.moviesapp"
         minSdkVersion 21
-        targetSdkVersion 29
+        targetSdkVersion 30
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -34,13 +33,13 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation"org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    implementation "org.jetbrains.kotlin:kotlin-reflect:$version_kotlin_reflect"
+    implementation "org.jetbrains.kotlin:kotlin-reflect:$kotlin_version"
     implementation "androidx.appcompat:appcompat:$version_app_compat"
     implementation "androidx.core:core-ktx:$version_core"
     implementation "com.google.android.material:material:$version_material"
     implementation "androidx.constraintlayout:constraintlayout:$version_constraintlayout"
-    implementation "androidx.navigation:navigation-fragment:$version_navigation_fragment"
-    implementation "androidx.navigation:navigation-ui:$version_bottom_navigation"
+    implementation "androidx.navigation:navigation-fragment-ktx:$version_navigation_fragment"
+    implementation "androidx.navigation:navigation-ui-ktx:$version_bottom_navigation"
     implementation "androidx.lifecycle:lifecycle-extensions:$version_lifecycle_extension"
     implementation "androidx.navigation:navigation-fragment-ktx:$version_navigation_fragment"
     implementation "androidx.navigation:navigation-ui-ktx:$version_navigation_fragment"
