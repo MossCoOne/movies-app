@@ -60,6 +60,11 @@ dependencies {
     //Glide
     implementation "com.github.bumptech.glide:glide:$version_glide"
 
+    //Room database
+    implementation "androidx.room:room-runtime:$version_room"
+    kapt "androidx.room:room-compiler:$version_room"
+    implementation "androidx.room:room-ktx:$version_room"
+
     testImplementation "junit:junit:$version_junit"
     androidTestImplementation "androidx.test.ext:junit:$version_junit_ext"
     androidTestImplementation "androidx.test.espresso:espresso-core:$version_esspresso_core"
