@@ -1,4 +1,4 @@
-package com.mossco.za.moviesapp.ui.home
+package com.mossco.za.moviesapp.ui.nowplayingmovie
 
 import com.mossco.za.moviesapp.network.NetworkMovie
 

@@ -1,4 +1,4 @@
-package com.mossco.za.moviesapp.ui.home
+package com.mossco.za.moviesapp.ui.nowplayingmovie
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

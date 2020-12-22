@@ -11,7 +11,7 @@
 
         <variable
             name="clickListener"
-            type="com.mossco.za.moviesapp.ui.home.NowPlayingMovieItemClickListener" />
+            type="com.mossco.za.moviesapp.ui.nowplayingmovie.NowPlayingMovieItemClickListener" />
 
     </data>
 

@@ -1,4 +1,4 @@
-package com.mossco.za.moviesapp.ui.home
+package com.mossco.za.moviesapp.ui.nowplayingmovie
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.mossco.za.moviesapp.databinding.MovieItemLayoutBinding
 import com.mossco.za.moviesapp.network.NetworkMovie
-import com.mossco.za.moviesapp.ui.home.NowPlayingMoviesAdapter.NowPlayingMoviesViewHolder.Companion.from
+import com.mossco.za.moviesapp.ui.nowplayingmovie.NowPlayingMoviesAdapter.NowPlayingMoviesViewHolder.Companion.from
 
 class NowPlayingMoviesAdapter(val movieItemClickListener: NowPlayingMovieItemClickListener) :
     ListAdapter<NetworkMovie, NowPlayingMoviesAdapter.NowPlayingMoviesViewHolder>(
