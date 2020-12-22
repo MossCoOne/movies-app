@@ -9,8 +9,8 @@ import androidx.room.Query
 @Dao
 interface MoviesDatabaseDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertAll(vararg movies: Movie)
+    fun insertAll(vararg nowPlayingMovies: NowPlayingMovie)
 
-    @Query("SELECT * FROM Movie")
-    fun getAllMovies(): LiveData<List<Movie>>
+    @Query("SELECT * FROM NowPlayingMovie")
+    fun getNowPlayingMovies(): LiveData<List<NowPlayingMovie>>
 }

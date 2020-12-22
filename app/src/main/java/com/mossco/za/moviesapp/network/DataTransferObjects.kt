@@ -1,6 +1,6 @@
 package com.mossco.za.moviesapp.network
 
-import com.mossco.za.moviesapp.database.Movie
+import com.mossco.za.moviesapp.database.NowPlayingMovie
 import com.squareup.moshi.Json
 
 data class NetworkMoviesResponse(@Json(name = "results") val movies: List<NetworkMovie>? = null)
@@ -24,9 +24,9 @@ data class NetworkMovie(
     @Json(name = "release_date") val releaseDate: String? = null
 )
 
-fun List<NetworkMovie>.asDatabaseModel(): Array<Movie> {
+fun List<NetworkMovie>.asDatabaseModel(): Array<NowPlayingMovie> {
     return map {
-        Movie(
+        NowPlayingMovie(
             movieId = it.id,
             popularity = it.popularity,
             voteCount = it.voteCount,

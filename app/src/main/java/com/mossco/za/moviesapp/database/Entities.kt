@@ -6,7 +6,7 @@ import androidx.room.PrimaryKey
 import com.squareup.moshi.Json
 
 @Entity
-data class Movie(
+data class NowPlayingMovie(
     @PrimaryKey
     val movieId: Int? = 0,
     val popularity: Double? = 0.0,
